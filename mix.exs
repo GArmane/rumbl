@@ -21,7 +21,11 @@ defmodule Rumbl.MixProject do
   def application do
     [
       mod: {Rumbl.Application, []},
-      extra_applications: [:logger, :runtime_tools],
+      extra_applications: [
+        :logger,
+        :runtime_tools,
+        :comeonin,
+      ],
     ]
   end
 
@@ -45,6 +49,7 @@ defmodule Rumbl.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:dialyxir, "~> 0.5.1", only: :dev},
+      {:argon2_elixir, "~> 2.0"},
     ]
   end
 

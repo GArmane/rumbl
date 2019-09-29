@@ -5,7 +5,7 @@ LABEL license="MIT"
 
 EXPOSE 4000
 
-RUN apk add --no-cache --update nodejs npm inotify-tools
+RUN apk add --no-cache --update make gcc libc-dev nodejs npm inotify-tools
 
 ENV PATH=./node_modules/.bin:$PATH
 
