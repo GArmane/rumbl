@@ -2,7 +2,7 @@ defmodule RumblWeb.UserController do
   use RumblWeb, :controller
 
   alias Rumbl.Repo
-  alias RumblWeb.User
+  alias Rumbl.User
 
   def index(conn, _params) do
     users = Repo.all User
