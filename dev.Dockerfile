@@ -14,7 +14,7 @@ RUN adduser -u 1000 -D elixir && \
 
 USER elixir
 
-ONBUILD RUN mix do local.hex --force, local.rebar --force, archive.install hex phx_new --force
+RUN mix do local.hex --force, local.rebar --force, archive.install hex phx_new --force
 
 WORKDIR /home/elixir/app
 

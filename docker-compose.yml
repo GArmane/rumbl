@@ -36,7 +36,7 @@ services:
     ports:
      - "4001:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: 'dev@elixir.com'
+      PGADMIN_DEFAULT_EMAIL: 'dev@phoenix.com'
       PGADMIN_DEFAULT_PASSWORD: 'dev@1234'
     depends_on:
       - pgsql-db
