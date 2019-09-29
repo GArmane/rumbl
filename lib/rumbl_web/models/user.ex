@@ -1,4 +1,4 @@
-defmodule Rumbl.User do
+defmodule RumblWeb.User do
   defstruct [
     :id,
     :name,
