@@ -8,7 +8,7 @@ services:
   app:
     image: rumbl
     hostname: app
-    command: "mix do deps.get, deps.compile, phx.server"
+    command: "mix phx.server"
     build:
       context: .
       dockerfile: dev.Dockerfile
