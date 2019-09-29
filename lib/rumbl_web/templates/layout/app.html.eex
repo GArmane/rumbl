@@ -12,10 +12,13 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li><a href="<%= Routes.user_path(@conn, :index) %>">Show Users</a></li>
+          </ul>
+          <ul>
+            <li><a href="<%= Routes.user_path(@conn, :new) %>">New User</a></li>
           </ul>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
+        <a href="<%= Routes.page_path(@conn, :index) %>" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
         </a>
       </section>
