@@ -1,12 +1,15 @@
-defmodule Rumbl.User do
+defmodule Rumbl.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Rumbl.Videos.Video
 
   schema "users" do
     field :name, :string
     field :username, :string
     field :password, :string, virtual: :true
     field :password_hash, :string
+    has_many :videos, Video
 
     timestamps()
   end

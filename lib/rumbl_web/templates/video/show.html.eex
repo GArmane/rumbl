@@ -8,8 +8,8 @@
   </li>
 
   <li>
-    <strong>Tittle:</strong>
-    <%= @video.tittle %>
+    <strong>Title:</strong>
+    <%= @video.title %>
   </li>
 
   <li>

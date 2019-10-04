@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Url</th>
-      <th>Tittle</th>
+      <th>Title</th>
       <th>Description</th>
 
       <th></th>
@@ -14,7 +14,7 @@
 <%= for video <- @videos do %>
     <tr>
       <td><%= video.url %></td>
-      <td><%= video.tittle %></td>
+      <td><%= video.title %></td>
       <td><%= video.description %></td>
 
       <td>
