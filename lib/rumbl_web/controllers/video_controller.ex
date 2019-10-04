@@ -4,13 +4,17 @@ defmodule RumblWeb.VideoController do
   alias Rumbl.Videos
   alias Rumbl.Videos.Video
 
+  defp user_videos(user) do
+    assoc(user, :videos)
+  end
+
   def action(conn, _) do
     apply(__MODULE__, action_name(conn),
          [conn, conn.params, conn.assigns.current_user])
   end
 
-  def index(conn, _params) do
-    videos = Videos.list_videos()
+  def index(conn, _params, user) do
+    videos = Repo.all(user_videos(user))
     render(conn, "index.html", videos: videos)
   end
 
@@ -39,8 +43,8 @@ defmodule RumblWeb.VideoController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    video = Videos.get_video!(id)
+  def show(conn, %{"id" => id}, user) do
+    video = Repo.get!(user_videos(user), id)
     render(conn, "show.html", video: video)
   end
 
