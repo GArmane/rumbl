@@ -4,17 +4,30 @@ defmodule RumblWeb.VideoController do
   alias Rumbl.Videos
   alias Rumbl.Videos.Video
 
+  def action(conn, _) do
+    apply(__MODULE__, action_name(conn),
+         [conn, conn.params, conn.assigns.current_user])
+  end
+
   def index(conn, _params) do
     videos = Videos.list_videos()
     render(conn, "index.html", videos: videos)
   end
 
-  def new(conn, _params) do
-    changeset = Videos.change_video(%Video{})
+  def new(conn, _params, user) do
+    changeset =
+      user
+      |> build_assoc(:videos)
+      |> Video.changeset()
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"video" => video_params}) do
+  def create(conn, %{"video" => video_params}, user) do
+    changeset =
+      user
+      |> build_assoc(:videos)
+      |> Video.changeset()
+
     case Videos.create_video(video_params) do
       {:ok, video} ->
         conn
