@@ -1,13 +1,7 @@
 defmodule RumblWeb.VideoController do
   use RumblWeb, :controller
 
-  alias Rumbl.Repo
   alias Rumbl.Videos
-  alias Rumbl.Videos.Video
-
-  defp user_videos(user) do
-    assoc(user, :videos)
-  end
 
   def action(conn, _) do
     apply(__MODULE__, action_name(conn),
@@ -15,25 +9,17 @@ defmodule RumblWeb.VideoController do
   end
 
   def index(conn, _params, user) do
-    videos = Repo.all(user_videos(user))
+    videos = Videos.list_videos(user)
     render(conn, "index.html", videos: videos)
   end
 
   def new(conn, _params, user) do
-    changeset =
-      user
-      |> build_assoc(:videos)
-      |> Video.changeset()
+    changeset = Videos.new_video(user)
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"video" => video_params}, user) do
-    changeset =
-      user
-      |> build_assoc(:videos)
-      |> Video.changeset()
-
-    case Videos.create_video(video_params) do
+    case Videos.create_video(user, video_params) do
       {:ok, video} ->
         conn
         |> put_flash(:info, "Video created successfully.")
@@ -45,19 +31,18 @@ defmodule RumblWeb.VideoController do
   end
 
   def show(conn, %{"id" => id}, user) do
-    video = Repo.get!(user_videos(user), id)
+    video = Videos.get_video!(user, id)
     render(conn, "show.html", video: video)
   end
 
-  def edit(conn, %{"id" => id}) do
-    video = Videos.get_video!(id)
-    changeset = Video.changeset(video)
+  def edit(conn, %{"id" => id}, user) do
+    video = Videos.get_video!(user, id)
+    changeset = Videos.change_video(video)
     render(conn, "edit.html", video: video, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "video" => video_params}) do
-    video = Repo.get!(user_videos(user), id)
-    changeset = Video.changeset(video, video_params)
+  def update(conn, %{"id" => id, "video" => video_params}, user) do
+    video = Videos.get_video!(user, id)
 
     case Videos.update_video(video, video_params) do
       {:ok, video} ->
@@ -70,9 +55,10 @@ defmodule RumblWeb.VideoController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    video = Repo.get!(user_videos(user), id)
-    Repo.delete!(video)
+  def delete(conn, %{"id" => id}, user) do
+    user
+    |> Videos.get_video!(id)
+    |> Videos.delete_video
 
     conn
     |> put_flash(:info, "Video deleted successfully.")
