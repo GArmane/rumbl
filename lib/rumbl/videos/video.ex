@@ -3,12 +3,14 @@ defmodule Rumbl.Videos.Video do
   import Ecto.Changeset
 
   alias Rumbl.Users.User
+  alias Rumbl.Categories.Category
 
   schema "videos" do
     field :description, :string
     field :title, :string
     field :url, :string
     belongs_to :user, User
+    belongs_to :category, Category
 
     timestamps()
   end
