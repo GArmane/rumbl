@@ -8,6 +8,11 @@
   </li>
 
   <li>
+    <strong>Category:</strong>
+    <%= @video.category %>
+  </li>
+
+  <li>
     <strong>Title:</strong>
     <%= @video.title %>
   </li>

@@ -4,9 +4,9 @@
   <thead>
     <tr>
       <th>Url</th>
+      <th>Category</th>
       <th>Title</th>
       <th>Description</th>
-
       <th></th>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
 <%= for video <- @videos do %>
     <tr>
       <td><%= video.url %></td>
+      <td><%= video.category %></td>
       <td><%= video.title %></td>
       <td><%= video.description %></td>
-
       <td>
         <span><%= link "Show", to: Routes.video_path(@conn, :show, video) %></span>
         <span><%= link "Edit", to: Routes.video_path(@conn, :edit, video) %></span>
