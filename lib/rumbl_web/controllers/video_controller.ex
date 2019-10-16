@@ -2,6 +2,14 @@ defmodule RumblWeb.VideoController do
   use RumblWeb, :controller
 
   alias Rumbl.Videos
+  alias Rumbl.Categories
+
+  plug :load_categories when action in [:new, :create, :edit, :update]
+
+  defp load_categories(conn, _) do
+    categories = Categories.list_categories()
+    assign(conn, :categories, categories)
+  end
 
   def action(conn, _) do
     apply(__MODULE__, action_name(conn),
