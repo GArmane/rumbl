@@ -21,12 +21,14 @@ defmodule Rumbl.Videos do
   """
   def list_videos do
     Repo.all(Video)
+    |> Repo.preload(:category)
   end
 
   def list_videos(user) do
     user
     |> user_videos
     |> Repo.all
+    |> Repo.preload(:category)
   end
 
   @doc """
@@ -47,7 +49,7 @@ defmodule Rumbl.Videos do
   do: Repo.get!(Video, id)
 
   def get_video!(user, id),
-  do: user |> user_videos |> Repo.get!(id)
+  do: user |> user_videos |> Repo.get!(id) |> Repo.preload(:category)
 
   @doc """
   Creates a video.

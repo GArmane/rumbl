@@ -14,7 +14,7 @@
 <%= for video <- @videos do %>
     <tr>
       <td><%= video.url %></td>
-      <td><%= video.category %></td>
+      <td><%= video.category.name %></td>
       <td><%= video.title %></td>
       <td><%= video.description %></td>
       <td>

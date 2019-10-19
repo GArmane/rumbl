@@ -9,7 +9,7 @@
 
   <li>
     <strong>Category:</strong>
-    <%= @video.category %>
+    <%= @video.category.name %>
   </li>
 
   <li>
