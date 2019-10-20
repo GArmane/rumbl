@@ -14,7 +14,11 @@
 <%= for video <- @videos do %>
     <tr>
       <td><%= video.url %></td>
-      <td><%= video.category.name %></td>
+      <%= if video.category != nil do %>
+        <td><%= video.category.name %></td>
+      <% else %>
+        <td>None</td>
+      <% end %>
       <td><%= video.title %></td>
       <td><%= video.description %></td>
       <td>

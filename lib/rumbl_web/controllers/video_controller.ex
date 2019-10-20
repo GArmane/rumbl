@@ -28,10 +28,10 @@ defmodule RumblWeb.VideoController do
 
   def create(conn, %{"video" => video_params}, user) do
     case Videos.create_video(user, video_params) do
-      {:ok, video} ->
+      {:ok, _video} ->
         conn
         |> put_flash(:info, "Video created successfully.")
-        |> redirect(to: Routes.video_path(conn, :show, video))
+        |> redirect(to: Routes.video_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
