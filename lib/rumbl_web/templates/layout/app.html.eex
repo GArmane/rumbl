@@ -40,9 +40,10 @@
         </a>
       </section>
       <section class="container">
-        <nav role="navigation">
+        <nav class="nav-bar" role="navigation">
           <ul>
-            <li><a href="<%= Routes.user_path(@conn, :index) %>">Show Users</a></li>
+            <li class="nav-bar-item"><a href="<%= Routes.user_path(@conn, :index) %>">Show Users</a></li>
+            <li class="nav-bar-item"><a href="<%= Routes.video_path(@conn, :index) %>">Show Videos</a></li>
           </ul>
         </nav>
       </section>

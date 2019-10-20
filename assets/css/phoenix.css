@@ -132,3 +132,13 @@ header nav a {
     margin: 2rem 1rem;
   }
 }
+
+.nav-bar {
+
+}
+
+.nav-bar-item {
+  float: left;
+  padding: 0px 0px 10px 10px;
+}
+
