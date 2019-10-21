@@ -1,4 +1,4 @@
-defmodule Rumbl.VideoControllerTest do
+defmodule RumblWeb.VideoControllerTest do
   use RumblWeb.ConnCase
 
   alias Rumbl.Videos.Video

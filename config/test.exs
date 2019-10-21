@@ -15,4 +15,10 @@ config :rumbl, RumblWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger,
+  level: :warn
+
+# Configure password hashing function
+config :argon2_elixir,
+  t_cost: 1,
+  m_cost: 8

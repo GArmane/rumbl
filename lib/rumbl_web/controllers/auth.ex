@@ -45,10 +45,13 @@ defmodule RumblWeb.Auth do
     user = repo.get_by(User, username: username)
 
     cond do
-      user && Argon2.check_pass(user, given_pass) ->
-        {:ok, login(conn, user)}
       user ->
-        {:error, :unauthorized, conn}
+        case Argon2.check_pass(user, given_pass) do
+          {:ok, _} ->
+            {:ok, login(conn, user)}
+          _ ->
+            {:error, :unauthorized, conn}
+        end
       true ->
         {:error, :not_found, conn}
     end
