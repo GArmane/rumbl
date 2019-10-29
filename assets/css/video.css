@@ -1,4 +1,8 @@
+#annotations-panel {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 #msg-container {
   min-height: 190px;
-  }
-  
+}
