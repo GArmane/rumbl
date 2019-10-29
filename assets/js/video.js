@@ -18,9 +18,49 @@ const Video = {
     const msgContainer = document.getElementById('msg-container');
     const msgInput = document.getElementById('msg-input');
     const postButton = document.getElementById('msg-submit');
-    const vidChanel = socket.channel(`videos:${videoId}`);
+    const vidChannel = socket.channel(`videos:${videoId}`);
 
-    // TODO: join video channel
+    // Event Listeners
+
+    postButton.addEventListener('click', e => {
+      const payload = {
+        body: msgInput.value,
+        at: Player.getCurrentTime(),
+      };
+
+      vidChannel
+        .push('new_annotation', payload)
+        .receive('error', e => console.error(e));
+
+      msgInput.value = "";
+    });
+
+    // Setup socket channel
+    vidChannel
+      .on('new_annotation', (resp) => this.renderAnnotation(msgContainer, resp));
+
+    vidChannel
+      .join()
+      .receive('ok', resp => console.log('joined the channel', resp))
+      .receive('error', reason => console.log('join failed', reason))
+  },
+
+  esc(str) {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(str))
+    return div.innerHTML;
+  },
+
+  renderAnnotation(msgContainer, { user, body, at }) {
+    const template = document.createElement('div');
+    template.innerHTML = `
+      <a href="#" data-seek="${this.esc(at)}">
+        <b>${this.esc(user.username)}</b>: ${this.esc(body)}
+      </a>
+    `;
+
+    msgContainer.appendChild(template)
+    msgContainer.scrollTop = msgContainer.scrollHeight;
   }
 }
 
