@@ -3,6 +3,7 @@ defmodule Rumbl.Users.User do
   import Ecto.Changeset
 
   alias Rumbl.Videos.Video
+  alias Rumbl.Annotations.Annotation
 
   schema "users" do
     field :name, :string
@@ -10,6 +11,7 @@ defmodule Rumbl.Users.User do
     field :password, :string, virtual: :true
     field :password_hash, :string
     has_many :videos, Video
+    has_many :annotation, Annotation
 
     timestamps()
   end

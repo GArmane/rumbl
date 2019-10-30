@@ -4,6 +4,7 @@ defmodule Rumbl.Videos.Video do
 
   alias Rumbl.Users.User
   alias Rumbl.Categories.Category
+  alias Rumbl.Annotations.Annotation
 
   @primary_key {:id, Rumbl.Videos.Permalink, autogenerate: true}
 
@@ -14,6 +15,8 @@ defmodule Rumbl.Videos.Video do
     field :slug, :string
     belongs_to :user, User
     belongs_to :category, Category
+    has_many :annotation, Annotation
+
 
     timestamps()
   end
