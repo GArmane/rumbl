@@ -22,7 +22,7 @@ const Video = {
 
     // Event Listeners
 
-    postButton.addEventListener('click', e => {
+    postButton.addEventListener('click', () => {
       const payload = {
         body: msgInput.value,
         at: Player.getCurrentTime(),
@@ -30,7 +30,7 @@ const Video = {
 
       vidChannel
         .push('new_annotation', payload)
-        .receive('error', e => console.error(e));
+        .receive('error', error => console.error(error));
 
       msgInput.value = "";
     });
