@@ -48,7 +48,7 @@ defmodule Rumbl.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:dialyxir, "~> 0.5.1", only: :dev},
+      {:dialyxir, "~> 0.5.1", only: [:dev]},
       {:argon2_elixir, "~> 2.0"},
       {:sweet_xml, "~> 0.6.6"},
     ]

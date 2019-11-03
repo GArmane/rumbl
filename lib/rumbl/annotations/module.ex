@@ -7,6 +7,7 @@ defmodule Rumbl.Annotations do
 
   alias Rumbl.Repo
   alias Rumbl.Annotations.Annotation
+  alias Rumbl.Users.User
 
   def list do
     Repo.all(Annotation)
@@ -31,5 +32,10 @@ defmodule Rumbl.Annotations do
     |> Ecto.build_assoc(:annotation, video_id: video_id)
     |> Annotation.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def fetch_user(annotation) do
+    annotation
+    |> Repo.preload(:user)
   end
 end
