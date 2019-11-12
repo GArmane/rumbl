@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :rumbl,
-  ecto_repos: [Rumbl.Repo]
+config :rumbl, ecto_repos: [Rumbl.Repo]
 
 # Configures the endpoint
-config :rumbl, RumblWeb.Endpoint,
+config :rumbl_web, RumblWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "UHWT6BetfZY0NVfx64UOXiW+AiPAIWBftIKcq/zbEOEBGnWcHg9muu/rCbgKseWX",
   render_errors: [view: RumblWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Rumbl.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: RumblWeb.PubSub, adapter: Phoenix.PubSub.PG2],
+  reloadable_apps: [:rumbl_web]
 
 # Configures Elixir's Logger
 config :logger, :console,
