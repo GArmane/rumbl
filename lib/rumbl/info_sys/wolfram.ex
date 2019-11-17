@@ -18,8 +18,9 @@ defmodule Rumbl.InfoSys.Wolfram do
     send(owner, {:results, query_ref, results})
   end
 
+  @http Application.get_env(:rumbl, :wolfram)[:http_client] || :httpc
   defp fetch_xml(query_str) do
-    {:ok, {_, _, body}} = :httpc.request(
+    {:ok, {_, _, body}} = @http.request(
       String.to_charlist(
         "http://api.wolframalpha.com/v2/query" <>
         "?appid=#{app_id()}" <>

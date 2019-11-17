@@ -22,3 +22,7 @@ config :logger,
 config :argon2_elixir,
   t_cost: 1,
   m_cost: 8
+
+config :rumbl, :wolfram,
+  app_id: "1234",
+  http_client: InfoSys.Test.HTTPClient
