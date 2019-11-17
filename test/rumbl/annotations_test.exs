@@ -14,7 +14,7 @@ defmodule Rumbl.AnnotationsTest do
       {:ok, annotation} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Annotations.create_annotation()
+        |> Annotations.create()
 
       annotation
     end

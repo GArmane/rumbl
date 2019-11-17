@@ -7,7 +7,6 @@ defmodule Rumbl.Annotations do
 
   alias Rumbl.Repo
   alias Rumbl.Annotations.Annotation
-  alias Rumbl.Users.User
 
   def list do
     Repo.all(Annotation)
